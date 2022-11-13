@@ -1,0 +1,42 @@
+
+var trex ,trex_running;
+function preload(){
+  trex_running = loadAnimation("trex1.png", "trex3.png",      "trex4.png");
+
+}
+
+function setup(){
+    createCanvas(600,200)
+
+    //Crea el sprite del Trex
+    trex = createSprite(50,160,20,50);
+    trex.addAnimation("running", trex_running);
+
+    edges=createEdgeSprites();
+
+    //Adding scale and position to the Trex
+    trex.scale=0.5;
+    trex.x=50;
+    
+    //Create ground sprite
+    ground=createSprite(200,180,400,20);
+  }
+
+function draw(){
+    background("white");
+
+    //Jumping the trex when space key pressed
+    if (keyDown("space")){
+      trex.velocity=-10;
+    }
+
+    //stop the trex from falling down
+    trex. velocityY=trex.velocityY+0.5; 
+    trex.collide(edges[3])
+
+    //stop trex from falling down
+    trex.collide(ground);
+
+    drawSprites();
+
+}
